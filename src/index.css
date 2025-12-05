@@ -1,0 +1,125 @@
+*{
+  scrollbar-width: none; 
+  -ms-overflow-style: none;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+
+body{
+  background-color: #f8fafc;
+}
+
+header{
+  position: sticky;
+}
+.nav {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navBarItems {
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.top-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+}
+
+.card-container {
+  max-width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 0.65rem 0.75rem;
+  background-color: #fff;
+  box-shadow: 3px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.card-container h1 {
+  font-size: 1.5em;
+  margin: 0 0 4px;
+}
+
+.card-container p {
+  margin: 0;
+}
+
+.min-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.Cards {
+  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.ToDo {
+  text-align: center;
+  justify-items: center;
+  align-items: center;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
+  
+}
+
+.task-list{
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  list-style: none;
+}
+
+.li{
+  flex: 1;
+  padding: 0.15rem;
+}
+
+.addBtn{
+  margin-left: 0.25rem;
+}
+
+button{
+  border-radius: 10%;
+  padding: 0.2rem 0.35rem;
+  color: black;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  outline: none !important;
+}
+button:hover{
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+
+
+.p-sortable-column-icon{
+  display: none !important;
+}
+
+a {
+  color: #222;
+  padding-bottom: 0.5rem;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: #3b82f6;
+}
+
+.swiper-pagination-bullet {
+  background-color: rgba(255, 255, 255, 0.5); /* white, 50% opacity */
+}
+
+/* Active bullet */
+.swiper-pagination-bullet-active {
+  background-color: #3b82f6; /* Tailwind blue-500 */
+  opacity: 1; /* full opacity */
+}

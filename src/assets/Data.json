@@ -1,0 +1,95 @@
+[
+    {
+        "ProjectTitle": "Tracker1",
+        "TeamMembers": [
+            {
+                "id": 1,
+                "name": "Alice",
+                "activity": "Design",
+                "progress": 75,
+                "tasks": 5,
+                "todo": [
+                    "Create wireframes",
+                    "Review design with team",
+                    "Update style guide"
+                ]
+            },
+            {
+                "id": 2,
+                "name": "Richard",
+                "activity": "Development",
+                "progress": 60,
+                "tasks": 4,
+                "todo": [
+                    "Implement API endpoints",
+                    "Write unit tests",
+                    "Fix bugs"
+                ]
+            },
+            {
+                "id": 3,
+                "name": "Elora",
+                "activity": "Testing",
+                "progress": 40,
+                "tasks": 6,
+                "todo": [
+                    "Create test cases",
+                    "Perform regression testing",
+                    "Log defects"
+                ]
+            }
+        ]
+    },
+    {
+        "ProjectTitle": "Tracker2",
+        "TeamMembers": [
+            {
+                "id": 1,
+                "name": "Alice",
+                "activity": "Design",
+                "progress": 75,
+                "tasks": 5
+            },
+            {
+                "id": 2,
+                "name": "Richard",
+                "activity": "Development",
+                "progress": 60,
+                "tasks": 2
+            },
+            {
+                "id": 3,
+                "name": "Elora",
+                "activity": "Testing",
+                "progress": 40,
+                "tasks": 6
+            }
+        ]
+    },
+    {
+        "ProjectTitle": "Tracker3",
+        "TeamMembers": [
+            {
+                "id": 1,
+                "name": "Alice",
+                "activity": "Design",
+                "progress": 75,
+                "tasks": 5
+            },
+            {
+                "id": 2,
+                "name": "Richard",
+                "activity": "Development",
+                "progress": 60,
+                "tasks": 2
+            },
+            {
+                "id": 3,
+                "name": "Elora",
+                "activity": "Testing",
+                "progress": 40,
+                "tasks": 6
+            }
+        ]
+    }
+]
