@@ -1,17 +1,17 @@
 import HomepageNav from './HomepageNav.jsx';
 import Chart from '../Report/Chart.jsx'
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Carousel from './Carousel.jsx';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Stacks from './stacks.jsx';
 import { BarChart3Icon, Settings, User } from "lucide-react";
 import { Instagram, Linkedin, Facebook, Youtube, Twitter, CopyrightIcon } from 'lucide-react';
-
+import api from "../api.js"
 
 function Homepage() {
-
+    const [message, setMessage] = useState("Loading...")
     const { scrollY } = useScroll();
     const y = useTransform(scrollY, [0, 500], [0, -20]);
     const opacity = useTransform(scrollY, [0, 300], [0, 1]);
@@ -30,13 +30,24 @@ function Homepage() {
         visible: { opacity: 1, y: 0 }
     };
 
+    useEffect(() => {
+    api.get("test/")
+        .then(res => setMessage(res.data.message))
+        .catch(() => setMessage("Django not connected"))
+    }, [])
+
     return (
         <>
             <HomepageNav />
-
+            <div className="text-center py-3 bg-black text-white font-semibold">
+                {message}
+            </div>
 
             <div className='container'>
-
+                <div className="text-center py-3 bg-black text-white font-semibold">
+                    {message}
+                </div>
+            
                 <div className='pt-28 relative mb-20 flex flex-row mt-12 bg-gradient-to-b from-gray-50  to-gray-50'>
 
                     <div className='z-10 ml-14 flex flex-col items-start justify-center w-1/2'>
