@@ -1,3 +1,6 @@
 from django.shortcuts import render
+from django.http import JsonResponse
+from .models import Message
 
-# Create your views here.
+def messages(request):
+    return JsonResponse(list(Message.objects.values()), safe=False)

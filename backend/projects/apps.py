@@ -1,10 +1,5 @@
-from django.db import models
+from django.apps import AppConfig
 
-class Project(models.Model):
-    name = models.CharField(max_length=200)
-    description = models.TextField()
-    progress = models.IntegerField(default=0)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.name
+class ProjectsConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'projects'
