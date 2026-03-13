@@ -69,7 +69,7 @@ function Homepage() {
                         >
                             <motion.img
                                 src='./assets/chartdata.svg'
-                                className='w-5/6 h-5/6 top-0 right-0'
+                                className='w-5/6 h-5/6 top-0 right-0 '
                                 whileHover={{ scale: 1.03 }}
                                 alt="chart data"
                             />

@@ -1,14 +1,7 @@
-import Lists from "../Components/Lists";
-import Data from '../assets/Data.json';
-
-function Chats(){
+import Data from '../assets/Data.json'
+function Chat(){
 
     
-    const members = Data.flatMap((data) => data.TeamMembers);
-    const memberMessage = members.map((each, idx) => (
-        
-        <li key={`${each.id}-${idx}`} className="text-white">{each.name}</li>
-    ));
 
     return(
         <>
@@ -16,9 +9,9 @@ function Chats(){
         <div className="container bg-cyan-700 flex flex-row h-screen">
             <div className="flex flex-col w-1/5 h-full">
                 <div className="flex flex-col">
-                    <ul className="list-none">
-                        {memberMessage}
-                    </ul>
+                <ul className="list-none">
+                    {memberMessage}
+                </ul>
                 
 
                 </div>
@@ -36,4 +29,4 @@ function Chats(){
     )
 }
 
-export default Chats;
+export default Chat;
