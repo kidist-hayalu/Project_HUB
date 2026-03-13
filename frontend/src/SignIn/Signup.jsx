@@ -104,14 +104,14 @@ function Signup() {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  /*const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateAll()) return;
 
     setIsSubmitting(true);
 
     try {
-      // 🔐 Replace with real API call
+      //Replace with real API call
       await new Promise((res) => setTimeout(res, 1000));
 
       alert("Registration successful!");
@@ -120,7 +120,7 @@ function Signup() {
     } finally {
       setIsSubmitting(false);
     }
-  };
+  };*/
 
   return (
     <div className="bg-white  text-[#0d141b]  min-h-screen flex overflow-x-hidden">

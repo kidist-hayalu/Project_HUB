@@ -14,7 +14,7 @@ function Login() {
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$/;
 
 
-    const handleSubmit = async (e) => {
+    /*const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");
 
@@ -56,7 +56,7 @@ function Login() {
         } finally {
             setLoading(false);
         }
-    };
+    };*/
 
     return (
         <>
