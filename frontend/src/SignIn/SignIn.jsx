@@ -14,7 +14,7 @@ function Login() {
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$/;
 
 
-    /*const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");
 
@@ -56,7 +56,7 @@ function Login() {
         } finally {
             setLoading(false);
         }
-    };*/
+    };
 
     return (
         <>
@@ -204,11 +204,6 @@ function Login() {
                                     </Link>
                                 </p>
                             </div>
-                        </div>
-
-                        {/* FOOTER */}
-                        <div className="p-6 lg:p-8 text-center text-xs text-[#4c739a] ">
-                            © 2024 HomeCare Services Inc. Secured with 256-bit encryption.
                         </div>
 
                     </div>

@@ -104,7 +104,7 @@ function Signup() {
     }));
   };
 
-  /*const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateAll()) return;
 
@@ -120,140 +120,145 @@ function Signup() {
     } finally {
       setIsSubmitting(false);
     }
-  };*/
+  };
 
   return (
     <div className="bg-white  text-[#0d141b]  min-h-screen flex overflow-x-hidden">
-      {/* LEFT IMAGE */}
-      <div className="hidden lg:block w-1/2 relative overflow-hidden">
+      <div className="flex min-h-screen w-full">
         <div
-          className="absolute inset-0 bg-cover bg-center overflow-hidden"
+          className="absolute inset-0 bg-cover bg-center overflow-hidden z-0"
           style={{
             backgroundImage:
               'url("../assets/AAU.webp")',
           }}
-        />
-        <div className="absolute inset-0 bg-black/10" />
-        <div className="absolute bottom-12 left-12 right-12 text-white">
-          <h1 className="text-4xl font-black mb-4">Join Our Care Community</h1>
-          <p className="text-lg max-w-md opacity-90">
-            HomeCare connects families and caregivers to provide compassionate
-            support.
-          </p>
-        </div>
-      </div>
-
-      {/* FORM */}
-      <div className="w-full lg:w-1/2 flex flex-col overflow-hidden">
-        <div className="px-8  flex items-center justify-between">
-          <span className="font-bold text-xl text-black">
-            <img src="/tg_image_3199460643.jpeg" alt="Logo" className="w-1/2 h-1/2" />
-          </span>
-          <Link to="/" className="text-black text-md font-semibold w-full">
-            Home
-          </Link>
-        </div>
-
-        <form
-          onSubmit={handleSubmit}
-          className="flex-1 flex items-center justify-center px-8 "
         >
-          <div className="w-full max-w-md space-y-6">
-            <h2 className="text-3xl font-black text-center">Create Your Account</h2>
+          <div className="absolute inset-0 bg-primary/20 backdrop-brightness-95" />
+        </div>
+        {/* LEFT IMAGE */}
 
-            {/* INPUTS */}
-            {[
-              ["fullName", "Full Name", "text", "name"],
-              ["phone", "Phone Number", "tel", "tel"],
-              ["email", "Email Address", "email", "email"],
-              ["password", "Password", "password", "new-password"],
-              [
-                "confirmPassword",
-                "Confirm Password",
-                "password",
-                "new-password",
-              ],
-
-            ].map(([name, label, type, auto]) => (
-              <div key={name}>
-                <label className="font-bold text-sm">{label}</label>
-                <input
-                  name={name}
-                  type={type}
-                  value={form[name]}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  autoComplete={auto}
-                  placeholder={label}
-                  required
-                  className="w-full text-sm px-3 py-2 rounded-xl bg-slate-50  mt-1"
-                />
-                {errors[name] && (
-                  <p className="text-red-500 text-sm">{errors[name]}</p>
-                )}
-
-                {/* PASSWORD STRENGTH */}
-                {name === "password" && form.password && (
-                  <div className="mt-2">
-                    <div className="h-2 w-full bg-slate-200 rounded">
-                      <div
-                        className="h-2 rounded bg-primary transition-all"
-                        style={{
-                          width: `${(passwordStrength.score / 5) * 100}%`,
-                        }}
-                      />
-                    </div>
-                    <p className="text-xs mt-1">
-                      Strength: {passwordStrength.label}
-                    </p>
-                  </div>
-                )}
-              </div>
-            ))}
-
-            {/* TERMS */}
-            <div className="flex gap-2 items-center">
-              <input
-                type="checkbox"
-                name="agreeTerms"
-                checked={form.agreeTerms}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <span className="text-sm">
-                I agree to the{" "}
-                <Link to="/terms" className="text-black font-bold">
-                  Terms
-                </Link>{" "}
-                and{" "}
-                <Link to="/privacy" className="text-black font-bold">
-                  Privacy Policy
-                </Link>
-              </span>
-            </div>
-            {errors.agreeTerms && (
-              <p className="text-red-500 text-sm">{errors.agreeTerms}</p>
-            )}
-
-            {/* SUBMIT */}
-            <button
-              disabled={isSubmitting}
-              className="w-full h-14 bg-black text-white rounded-xl font-bold disabled:opacity-50"
-            >
-              {isSubmitting ? "Creating Account..." : "Create Account"}
-            </button>
-
-            <p className="text-center text-sm">
-              Already have an account?{" "}
-              <Link to="/Signin" className="text-black font-bold">
-                Sign In
-              </Link>
+        <div className="hidden lg:block w-1/2 relative overflow-hidden">
+          <div className="absolute inset-0 bg-black/10" />
+          <div className="p-12  flex items-start z-10 relative h-full">
+            <span className="font-bold text-xl text-white flex items-center gap-3 mb-4">
+              <img src="/tg_image_3199460643.jpeg" alt="Logo" className="w-1/2 h-1/2" />
+            </span>
+            <Link to="/" className="text-white text-md font-semibold w-full">
+              Home
+            </Link>
+          </div>
+          <div className="absolute bottom-12 left-12 right-12 text-white">
+            <h1 className="text-4xl font-black mb-4">Join Our Project Community</h1>
+            <p className="text-lg max-w-md opacity-90">
+              Where your projects find their perfect match and your team thrives with ProjectHub.
             </p>
           </div>
-        </form>
+        </div>
+        {/*Right Panel*/}
+        <div className="w-full lg:w-1/2 flex flex-col items-center bg-white dark:bg-background-dark overflow-x-hidden z-10 m-8 rounded-lg">
 
-        <div className="p-6 text-xs text-center ">
-          © 2024 LifeLine Addis HomeCare Services Inc.
+          {/* FORM */}
+          <div className="w-full flex flex-col overflow-hidden">
+
+
+            <form
+              onSubmit={handleSubmit}
+              className="flex-1 flex items-center justify-center px-8 "
+            >
+              <div className="w-full max-w-md space-y-6">
+                <h2 className="text-3xl font-black text-center">Create Your Account</h2>
+
+                {/* INPUTS */}
+                {[
+                  ["fullName", "Full Name", "text", "name"],
+                  ["phone", "Phone Number", "tel", "tel"],
+                  ["email", "Email Address", "email", "email"],
+                  ["password", "Password", "password", "new-password"],
+                  [
+                    "confirmPassword",
+                    "Confirm Password",
+                    "password",
+                    "new-password",
+                  ],
+
+                ].map(([name, label, type, auto]) => (
+                  <div key={name}>
+                    <label className="font-bold text-sm">{label}</label>
+                    <input
+                      name={name}
+                      type={type}
+                      value={form[name]}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      autoComplete={auto}
+                      placeholder={label}
+                      required
+                      className="w-full text-sm px-3 py-2 rounded-xl bg-slate-50  mt-1"
+                    />
+                    {errors[name] && (
+                      <p className="text-red-500 text-sm">{errors[name]}</p>
+                    )}
+
+                    {/* PASSWORD STRENGTH */}
+                    {name === "password" && form.password && (
+                      <div className="mt-2">
+                        <div className="h-2 w-full bg-slate-200 rounded">
+                          <div
+                            className="h-2 rounded bg-primary transition-all"
+                            style={{
+                              width: `${(passwordStrength.score / 5) * 100}%`,
+                            }}
+                          />
+                        </div>
+                        <p className="text-xs mt-1">
+                          Strength: {passwordStrength.label}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                ))}
+
+                {/* TERMS */}
+                <div className="flex gap-2 items-center">
+                  <input
+                    type="checkbox"
+                    name="agreeTerms"
+                    checked={form.agreeTerms}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  <span className="text-sm">
+                    I agree to the{" "}
+                    <Link to="/terms" className="text-black font-bold">
+                      Terms
+                    </Link>{" "}
+                    and{" "}
+                    <Link to="/privacy" className="text-black font-bold">
+                      Privacy Policy
+                    </Link>
+                  </span>
+                </div>
+                {errors.agreeTerms && (
+                  <p className="text-red-500 text-sm">{errors.agreeTerms}</p>
+                )}
+
+                {/* SUBMIT */}
+                <button
+                  disabled={isSubmitting}
+                  className="w-full h-14 bg-black text-white rounded-xl font-bold disabled:opacity-50"
+                >
+                  {isSubmitting ? "Creating Account..." : "Create Account"}
+                </button>
+
+                <p className="text-center text-sm">
+                  Already have an account?{" "}
+                  <Link to="/Signin" className="text-black font-bold">
+                    Sign In
+                  </Link>
+                </p>
+              </div>
+            </form>
+          </div>
+
         </div>
       </div>
     </div>

@@ -33,7 +33,7 @@ function HomepageNav() {
                                 </div>
 
                                 <div className="ml-1 text-base hover:cursor-pointer hover:scale-110">
-                                    <Link to={'/Login'} className="hover:text-current">
+                                    <Link to={'/SignIn'} className="hover:text-current">
                                         Sign In
                                     </Link>
                                     </div>

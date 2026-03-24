@@ -1,12 +1,8 @@
 import HomepageNav from './HomepageNav.jsx';
-import Chart from '../Report/Chart.jsx'
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import Carousel from './Carousel.jsx';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Stacks from './stacks.jsx';
-import { BarChart3Icon, Settings, User } from "lucide-react";
 import { Instagram, Linkedin, Facebook, Youtube, Twitter, CopyrightIcon } from 'lucide-react';
 import api from "../api.js"
 
@@ -67,7 +63,7 @@ function Homepage() {
                             whileInView={{ x: 50, scale: 1.2, opacity: 1 }}
                             viewport={{ amount: 0.5 }}
                             transition={{ duration: 0.1, ease: "easeInOut" }}>
-                            <Link to={'/Login'} className='text-gray-700 hover:text-gray-700 font-bold'>Start project</Link>
+                            <Link to={'/SignIn'} className='text-gray-700 hover:text-gray-700 font-bold'>Start project</Link>
                         </motion.div>
                     </div>
                     <div className='z-0 inset-0 opacity-75 w-1/2 mr-4 relative'>
@@ -172,7 +168,7 @@ function Homepage() {
                         <h1 className='my-2'>Ready to streamline your projects?</h1>
                         <p className='mb-2'>Join us today and take your project management to the next level!</p>
                         <div className='p-2 rounded-3xl backdrop-blur-lg backdrop-opacity-35  hover:bg-slate-100/50 transition duration-200 hover:scale-105  '>
-                            <Link to={'/Login'} className='text-slate-900 font-normal hover:text-black'>Start project</Link>
+                            <Link to={'/SignIn'} className='text-slate-900 font-normal hover:text-black'>Start project</Link>
                         </div>
 
                     </div>
