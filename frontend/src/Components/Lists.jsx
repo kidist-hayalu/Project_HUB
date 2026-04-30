@@ -1,69 +1,104 @@
-import { BarChart3Icon, Settings, User } from "lucide-react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { BarChart3Icon, User } from 'lucide-react';
+import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 function Lists() {
+  const location = useLocation();
+  const navBar = [
+    { id: 1, name: 'Projects', link: '/Dashboard' },
+    { id: 2, name: 'Teams', link: '/Teams' },
+    { id: 3, name: 'Reports', link: '/Report' },
+    { id: 4, name: 'Chats', link: '/Chats' },
+  ];
 
-    const navBar = [
-        { id: 1, name: 'Projects', Link: '/Dashboard' },
-        { id: 2, name: 'Teams', Link: '/Teams' },
-        { id: 3, name: 'Reports', Link: '/Report' },
-        { id: 4, name: 'Chats', Link: '/Chats' }];
+  const [notification, setNotification] = useState(false);
+  const [profile, setProfile] = useState(false);
+  const [settings, setSettings] = useState(false);
 
-    const navBarItems = navBar.map((bar) => <li key={bar.id} className="navBarItems hover:scale-110"><Link to={bar.Link}>{bar.name}</Link></li>);
+  return (
+    <header className='fixed left-0 top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur-xl shadow-sm'>
+      <div className='mx-auto flex max-w-7xl items-center justify-between px-6 py-4'>
+        <div className='flex items-center gap-3'>
+          <div className='flex h-11 w-11 items-center justify-center rounded-3xl bg-gradient-to-tr from-cyan-500 via-cyan-500 to-cyan-700 text-white shadow-lg'>
+            <BarChart3Icon size={20} />
+          </div>
+          <div>
+            <p className='text-sm font-semibold uppercase tracking-[0.24em] text-slate-500'>ProjectHub</p>
+            <p className='text-xl font-semibold text-slate-900'>Dashboard</p>
+          </div>
+        </div>
 
-    const [notification, setNotification] = useState(false);
-    const [profile, setProfile] = useState(false);
-    const [settings, setSettings] = useState(false);
+        <nav>
+          <ul className='flex items-center gap-8 text-sm font-medium text-slate-600'>
+            {navBar.map(item => (
+              <li key={item.id}>
+                <Link
+                  to={item.link}
+                  className={`transition hover:text-cyan-600 ${location.pathname === item.link ? 'text-cyan-600' : ''}`}
+                >
+                  {item.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-    return (<>
-        <header className='fixed top-0 left-0 w-full z-50 bg-white shadow-md bg-transparent '>
-            <div className="sticky top-0">
-                <nav className="nav py-2">
-                    <div className="flex justify-normal ml-20">
-                        <div className="flex-1 justify-self-start mr-2 bg-gradient-to-tr from-cyan-500 via-cyan-500 to-cyan-600 rounded">
-                            <BarChart3Icon style={{ color: "white", width: `1.65rem`, height: `1.65rem` }} />
-                        </div>
-                        <div className="flex-1 text-2xl font-semibold font-heading ">
-                            <h2 >ProjectHub</h2>
-                        </div>
-
-                    </div>
-                    <ul className="list-none flex justify-center items-center gap-8 ml-96">{navBarItems}</ul>
-                    <div className="flex flex-row items-center mr-20">
-                        <div className="flex flex-row items-center mr-3">
-                        <div className="bg-cyan-500 rounded-full p-1 ">
-                            <User size={18} className="text-white"/>
-                        </div>
-
-                        <p className="ml-1 text-base hover:cursor-pointer hover:scale-110" onClick={() => setProfile(true)} onMouseLeave={()=> setProfile(false)}>Profile</p>
-                        {profile && <div className="absolute top-12 right-16 w-48 bg-white border border-gray-300 rounded shadow-lg p-4">
-                            <p className="font-bold mb-2">User Name</p>
-                            <p className="text-sm text-gray-600 mb-4">User Email</p>
-                        </div>}
-                        </div>
-
-                        <div>
-                            <img src="/assets/gear-solid-full.svg" alt="Settings Icon" className="relative w-6 h-6 mr-4 hover:cursor-pointer hover:scale-110" onClick={() => setSettings(!settings)} onMouseLeave={() => setSettings(false)} />
-                        </div>
-                        {settings &&
-                            <div className="absolute top-12 right-12 w-48 bg-white border border-gray-300 rounded shadow-lg p-4">
-                                <p>Settings Menu</p></div>}
-                        <div>
-                            <img src="/assets/bell-solid-full.svg" alt="Notifications Icon" className="relative w-6 h-6 mr-4 hover:cursor-pointer hover:scale-110" onClick={() => setNotification(!notification)} onMouseLeave={() => setNotification(false)}/>
-                        </div>
-                        {notification &&
-                            <div className="absolute top-12 right-0 w-64 bg-white border border-gray-300 rounded shadow-lg p-4">
-                                <p>Notifications</p>
-                            </div>}
-
-                    </div>
-
-                </nav>
+        <div className='flex items-center gap-4'>
+          <button
+            type='button'
+            className='inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-200'
+            onClick={() => setProfile(true)}
+            onMouseLeave={() => setProfile(false)}
+          >
+            <div className='flex h-8 w-8 items-center justify-center rounded-full bg-cyan-600 text-white'>
+              <User size={16} />
             </div>
-        </header>
-    </>
-    )
+            Profile
+          </button>
+
+          <button
+            type='button'
+            className='rounded-full p-2 text-slate-600 transition hover:bg-slate-100'
+            onClick={() => setSettings(!settings)}
+          >
+            <img src='/assets/gear-solid-full.svg' alt='Settings' className='h-5 w-5' />
+          </button>
+
+          <button
+            type='button'
+            className='rounded-full p-2 text-slate-600 transition hover:bg-slate-100'
+            onClick={() => setNotification(!notification)}
+          >
+            <img src='/assets/bell-solid-full.svg' alt='Notifications' className='h-5 w-5' />
+          </button>
+        </div>
+      </div>
+
+      {profile && (
+        <div className='absolute right-6 top-20 w-56 rounded-3xl border border-slate-200 bg-white p-4 shadow-lg'>
+          <p className='font-semibold text-slate-900'>Ana Redwood</p>
+          <p className='mt-1 text-sm text-slate-500'>ana@projecthub.com</p>
+          <div className='mt-4 rounded-2xl bg-slate-50 p-3 text-sm text-slate-600'>
+            Member since 2025
+          </div>
+        </div>
+      )}
+
+      {settings && (
+        <div className='absolute right-24 top-20 w-48 rounded-3xl border border-slate-200 bg-white p-4 shadow-lg'>
+          <p className='font-semibold text-slate-900'>Settings</p>
+          <p className='mt-2 text-sm text-slate-500'>Notifications, preferences, and account info.</p>
+        </div>
+      )}
+
+      {notification && (
+        <div className='absolute right-6 top-20 w-64 rounded-3xl border border-slate-200 bg-white p-4 shadow-lg'>
+          <p className='font-semibold text-slate-900'>Notifications</p>
+          <p className='mt-2 text-sm text-slate-500'>You have 2 new team updates.</p>
+        </div>
+      )}
+    </header>
+  );
 }
 
-export default Lists
+export default Lists;

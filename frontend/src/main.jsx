@@ -13,7 +13,7 @@ import Homepage from './Homepage/Homepage.jsx'
 import Teams from './Teams/Teams.jsx'
 import Chat from './Chats/Chats.jsx'
 import SignIn from './SignIn/SignIn.jsx';
-import Signup from './SignIn/Signup.jsx';
+import Signup from './SignIn/Signup.jsx'
 
 const router = createBrowserRouter([
   {path: "/", element: <Homepage />},

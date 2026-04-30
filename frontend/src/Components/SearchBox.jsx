@@ -2,48 +2,55 @@ import {Search, X} from 'lucide-react';
 import { useState } from 'react';
 import Data from '../assets/Data.json';
 
-function SearchBox(){
+function SearchBox() {
+  const [query, setQuery] = useState('');
+  const projectTitles = Data.map(item => item.ProjectTitle);
+  const filteredProjects = projectTitles.filter(project =>
+    project.toLowerCase().includes(query.toLowerCase())
+  );
 
-    const [query, setQuery] = useState('');
-    const dat = Data.map(data => data.ProjectTitle);
+  const clearSearch = () => setQuery('');
 
-    const filteredProjects = dat.filter(project => project.toLowerCase().includes(query.toLowerCase()));
+  return (
+    <div className='relative w-full max-w-md'>
+      <div className='flex items-center gap-2 rounded-3xl border border-slate-200 bg-white px-4 py-3 shadow-sm transition hover:shadow-md'>
+        <Search className='h-5 w-5 text-slate-400' />
+        <input
+          type='text'
+          value={query}
+          onChange={event => setQuery(event.target.value)}
+          placeholder='Search projects...'
+          className='w-full bg-transparent text-sm text-slate-900 outline-none placeholder:text-slate-400'
+        />
+        {query && (
+          <button
+            type='button'
+            onClick={clearSearch}
+            aria-label='Clear search'
+            className='text-slate-400 transition hover:text-slate-600'
+          >
+            <X className='h-4 w-4' />
+          </button>
+        )}
+      </div>
 
-
-    function handleChange(event){
-        setQuery(event.target.value);
-    }
-
-    function handleClick(project){
-        setQuery(project);
-    }
-
-    
-    
-
-    function clearButton(){
-        if(!query)
-            return null;
-        return (
-            <button onClick={handleClick} className="text-gray-400 hover:text-gray-600"aria-label="Clear search">
-                <X className='w-4 h-4' />
-            </button>
-        );
-    }
-    return (
-       <div className='flex flex-col items-center px-3 py-2 w-full max-w-md'>
-        <div className="flex items-center border border-gray-300 rounded-xl px-3 py-2 w-full max-w-md shadow-sm hover:shadow-md transition-shadow">  
-            <div className="flex items-center flex-1 w-5 h-3 text-gray-500 mr-2" >   
-                <input type="text" placeholder="Search..." value={query} onChange={handleChange} className="flex-1 outline-none bg-transparent text-gray-700 placeholder-gray-400" />
-                <Search className="w-5 h-4 text-gray-500 mr-2 opacity-70" onClick={handleClick}/>
-            </div>
-            
+      {query && filteredProjects.length > 0 && (
+        <div className='absolute left-0 right-0 top-full z-10 mt-2 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl'>
+          <ul className='max-h-56 space-y-1 overflow-y-auto p-3'>
+            {filteredProjects.map((project, index) => (
+              <li
+                key={index}
+                className='cursor-pointer rounded-2xl px-3 py-2 text-sm text-slate-700 transition hover:bg-slate-100'
+                onClick={() => setQuery(project)}
+              >
+                {project}
+              </li>
+            ))}
+          </ul>
         </div>
-        {query !== '' && (
-                <div className='px-4 py-2 shadow-md inset-0 transition-all duration-300 w-full mt-1 flex flex-col' ><ul>{filteredProjects.map((project, index) => <li className='mb-2 hover:cursor-pointer' onClick={() => setQuery(project)} key={index}>{project}</li>)}</ul></div>
-            )}
-        </div>
-    )
+      )}
+    </div>
+  );
 }
 
 export default SearchBox

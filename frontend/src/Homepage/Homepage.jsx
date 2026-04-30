@@ -53,10 +53,10 @@ function Homepage() {
                             viewport={{ amount: 0.5 }}
                             transition={{ duration: 0.8, ease: "easeInOut" }}>Welcome to ProjectHub</motion.h1>
                         <motion.p className='text-gray-700 py-3 text-3xl font-semibold text-start mt-2 mb-2'
-                            initial={{ y: 30, opacity: 0 }}
-                            whileInView={{ y: 0, opacity: 1 }}
+                            initial={{ x: -100, opacity: 0 }}
+                            whileInView={{ x: 0, opacity: 1 }}
                             viewport={{ amount: 0.5 }}
-                            transition={{ duration: 0.8, ease: "easeInOut" }}>
+                            transition={{ duration: 0.95, ease: "easeInOut" }}>
                             Where your projects come to life and your team becomes one </motion.p>
                         <motion.div className='p-2 ml-40 rounded-3xl backdrop-blur-lg backdrop-opacity-25  hover:bg-slate-100/30 transition duration-200 hover:scale-105 flex items-center justify-center '
                             initial={{ scale: 0.8, opacity: 0 }}
@@ -66,7 +66,7 @@ function Homepage() {
                             <Link to={'/SignIn'} className='text-gray-700 hover:text-gray-700 font-bold'>Start project</Link>
                         </motion.div>
                     </div>
-                    <div className='z-0 inset-0 opacity-75 w-1/2 mr-4 relative'>
+                    {/*<div className='z-0 inset-0 opacity-75 w-1/2 mr-4 relative'>
                         <motion.div
                             className="grid grid-cols-2 gap-6 grid-rows-2"
                             variants={gridVariants}
@@ -93,7 +93,7 @@ function Homepage() {
                                 alt="on pc"
                             />
                         </motion.div>
-                    </div>
+                    </div>*/}
                 </div>
 
                 {/*

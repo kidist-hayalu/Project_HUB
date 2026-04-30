@@ -1,46 +1,84 @@
 import React, { useState } from 'react';
-import { Link } from 'lucide-react';
 
-function NewProject(){
-    const [pro, setPro] = useState([]);
-    const [title, setTitle] = useState("");
-    const [deadline, setDeadline] = useState("");
-    const [teamMembers, setTeamMembers] = useState("");
-    const [isTeam, setIsTeam] = useState(false);
+function NewProject() {
+  const [title, setTitle] = useState('');
+  const [deadline, setDeadline] = useState('');
+  const [teamMembers, setTeamMembers] = useState('');
+  const [isTeam, setIsTeam] = useState(false);
 
-    function addProject(){
-        const newProject = { Title: title, Deadline: deadline, TeamMembers: teamMembers };
-        setPro((prev) => [...prev, newProject]);
-        setTitle("");
-        setDeadline("");
-        setTeamMembers("");
-        setIsTeam(false);
-    }
+  function addProject() {
+    if (!title.trim()) return;
+    setTitle('');
+    setDeadline('');
+    setTeamMembers('');
+    setIsTeam(false);
+  }
 
-    return(
-        <div className='flex flex-col items-center justify-center pt-28'>
-            <h1 className='font-bold flex justify-start w-4/5 text-xl mb-4'>Create New Project</h1>
-            <input type="text" placeholder="Project Title" value={title} onChange={(e) => setTitle(e.target.value)} className='border p-1 ml-4 my-4 w-4/5'/>
-            <input type="date" placeholder="Project deadline" value={deadline} onChange={(e) => setDeadline(e.target.value)} className='border p-1 ml-4 my-4 w-4/5'/>
-            <div className='w-4/5 m-2'>
-            <p className='font-heading mb-3 ml-2'>Select Project Type:</p>
-                <div className='ml-10'>
-                    <input type="radio" className='rounded' checked={!isTeam} onChange={() => setIsTeam(false)}  />
-                    <label className='mr-12 pl-2'>Individual Project</label>
-                    <input type="radio" className='rounded ml-12' checked={isTeam} onChange={() => setIsTeam(true)} />
-                    <label className='pl-2'>Team Project</label>
-                </div>
-                {isTeam && (
-                <input type="number" placeholder="Team members" className='border p-1 mt-4 ml-10 w-4/5' value={teamMembers} onChange={(e) => setTeamMembers(e.target.value)}/>
-            )}
-            </div>
-            
+  return (
+    <div className='flex flex-col gap-6 p-10'>
+      <div>
+        <p className='text-sm font-medium uppercase tracking-[0.3em] text-cyan-600'>New Project</p>
+        <h2 className='mt-3 text-3xl font-semibold text-slate-900'>Create a new project</h2>
+        <p className='mt-2 text-sm leading-6 text-slate-600'>Add the next initiative and get your team aligned instantly.</p>
+      </div>
 
-            
-                <button className='mt-6 flex absolute bottom-20 right-24 justify-end' onClick={addProject}>Create Project</button>
-           
+      <div className='grid gap-4'>
+        <label className='space-y-2 text-sm text-slate-700'>
+          Project Title
+          <input
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+            placeholder='Enter project title'
+            className='w-full rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none focus:border-cyan-500'
+          />
+        </label>
+
+        <label className='space-y-2 text-sm text-slate-700'>
+          Deadline
+          <input
+            type='date'
+            value={deadline}
+            onChange={e => setDeadline(e.target.value)}
+            className='w-full rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none focus:border-cyan-500'
+          />
+        </label>
+
+        <div className='rounded-3xl border border-slate-200 bg-slate-50 p-4'>
+          <p className='text-sm font-semibold text-slate-900'>Project type</p>
+          <div className='mt-4 flex flex-wrap gap-4'>
+            <label className='inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700'>
+              <input type='radio' checked={!isTeam} onChange={() => setIsTeam(false)} />
+              Individual Project
+            </label>
+            <label className='inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700'>
+              <input type='radio' checked={isTeam} onChange={() => setIsTeam(true)} />
+              Team Project
+            </label>
+          </div>
+          {isTeam && (
+            <input
+              type='number'
+              min='1'
+              placeholder='Team members'
+              value={teamMembers}
+              onChange={e => setTeamMembers(e.target.value)}
+              className='mt-4 w-full rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none focus:border-cyan-500'
+            />
+          )}
         </div>
-    )
+      </div>
+
+      <div className='flex justify-end'>
+        <button
+          type='button'
+          onClick={addProject}
+          className='rounded-full bg-cyan-600 px-6 py-3 text-sm font-semibold text-white shadow-xl shadow-cyan-500/20 transition hover:bg-cyan-700'
+        >
+          Create Project
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default NewProject;

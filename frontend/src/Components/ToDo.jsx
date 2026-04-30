@@ -1,65 +1,121 @@
-import React, { useState } from "react"
+import React, { useState } from 'react';
 
 function ToDo() {
+  const [tasks, setTasks] = useState([]);
+  const [newTask, setNewTask] = useState('');
 
-    const [tasks, setTasks] = useState([]);
-    const [newTask, setNewTask] = useState("");
-
-    function addTasks() {
-        if (newTask.trim() !== "") {
-            setTasks(t => [...t, newTask]);
-            setNewTask("");
-        }
-
+  function addTasks() {
+    if (newTask.trim() !== '') {
+      setTasks(t => [...t, { text: newTask, completed: false }]);
+      setNewTask('');
     }
+  }
 
-    function deleteTask(index) {
-        setTasks(t => t.filter((_, i) => i !== index));
+  function deleteTask(index) {
+    setTasks(t => t.filter((_, i) => i !== index));
+  }
+
+  function toggleTask(index) {
+    setTasks(t => t.map((task, i) => i === index ? { ...task, completed: !task.completed } : task));
+  }
+
+  function clearCompleted() {
+    setTasks(t => t.filter(task => !task.completed));
+  }
+
+  function handleChange(event) {
+    setNewTask(event.target.value);
+  }
+
+  function moveTaskUp(index) {
+    if (index > 0) {
+      const updatedTasks = [...tasks];
+      [updatedTasks[index], updatedTasks[index - 1]] = [updatedTasks[index - 1], updatedTasks[index]];
+      setTasks(updatedTasks);
     }
+  }
 
-    function handleChange(event) {
-        setNewTask(event.target.value);
+  function moveTaskDown(index) {
+    if (index < tasks.length - 1) {
+      const updatedTasks = [...tasks];
+      [updatedTasks[index], updatedTasks[index + 1]] = [updatedTasks[index + 1], updatedTasks[index]];
+      setTasks(updatedTasks);
     }
+  }
 
-    function moveTaskUp(index) {
-        if (index > 0) {
-            const updatedTasks = [...tasks];
-            [updatedTasks[index], updatedTasks[index - 1]] = [updatedTasks[index - 1], updatedTasks[index]];
-            setTasks(updatedTasks);
-        }
+  return (
+    <div className='flex flex-col gap-6 p-10'>
+      <div>
+        <p className='text-sm font-medium uppercase tracking-[0.3em] text-cyan-600'>To Do List</p>
+        <h2 className='mt-3 text-3xl font-semibold text-slate-900'>Manage your tasks</h2>
+        <p className='mt-2 text-sm leading-6 text-slate-600'>Keep track of what needs to be done and stay organized.</p>
+      </div>
 
-    }
+      <div className='flex gap-3'>
+        <input
+          type='text'
+          placeholder='Enter a task'
+          value={newTask}
+          onChange={handleChange}
+          className='flex-1 rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none focus:border-cyan-500'
+        />
+        <button
+          onClick={addTasks}
+          className='rounded-full bg-cyan-600 px-6 py-3 text-sm font-semibold text-white shadow-xl shadow-cyan-500/20 transition hover:bg-cyan-700'
+        >
+          Add
+        </button>
+      </div>
 
-    function moveTaskDown(index) {
-        if (index < tasks.length - 1) {
-            const updatedTasks = [...tasks];
-            [updatedTasks[index], updatedTasks[index + 1]] = [updatedTasks[index + 1], updatedTasks[index]];
-            setTasks(updatedTasks);
-        }
-    }
-    return (
-        <div className="to-do-list">
-            <h2 className="mb-4 mt-20 ml-12 font-heading font-semibold text-xl">TO DO LIST</h2>
-            <div className="flex flex-row w-3/4 ml-12">
-                <input type="text" placeholder="Enter a task" className="border px-2 w-full rounded" value={newTask} onChange={handleChange} />
-                <button onClick={addTasks} className="addBtn">Add</button>
+      {tasks.some(task => task.completed) && (
+        <button
+          onClick={clearCompleted}
+          className='self-start rounded-full bg-rose-600 px-4 py-2 text-sm font-semibold text-white shadow-xl shadow-rose-500/20 transition hover:bg-rose-700'
+        >
+          Clear Completed
+        </button>
+      )}
+
+      <div className='space-y-3'>
+        {tasks.map((task, index) => (
+          <div key={index} className='flex items-center justify-between rounded-3xl border border-slate-200 bg-slate-50 p-4'>
+            <div className='flex items-center gap-3'>
+              <input
+                type='checkbox'
+                checked={task.completed}
+                onChange={() => toggleTask(index)}
+                className='h-5 w-5 rounded border-slate-300 text-cyan-600 focus:ring-cyan-500'
+              />
+              <span className={`text-sm ${task.completed ? 'line-through text-slate-500' : 'text-slate-900'}`}>{task.text}</span>
             </div>
-            <ol>
-                {tasks.map((task, index) =>
-                    <div className="task-list  w-5/6">
-                        <li key={index} className="li flex flex-row items-center list-none bg-white shadow-sm ml-10"><div className="flex justify-self-start items-start ml-4">{task}</div>
-                            <div className="ml-56 justify-self-end items-end flex flex-row">
-                                
-                                <img src="/assets/up-long-solid-full.svg" className="w-4 h-4 m-1 cursor-pointer" onClick={() => moveTaskUp(index)} />
-                                <img src="/assets/down-long-solid-full.svg" className="w-4 h-4 m-1 cursor-pointer" onClick={() => moveTaskDown(index)} />
-                                <img src="/assets/trash-solid-full.svg" className="w-5 h-5 m-1 cursor-pointer" onClick={() => deleteTask(index)} />
-                            </div>
-                        </li>
-
-                    </div>)}
-            </ol>
-
-        </div>
-    );
+            <div className='flex gap-2'>
+              <button
+                onClick={() => moveTaskUp(index)}
+                className='rounded-full p-2 text-slate-600 transition hover:bg-slate-200'
+                aria-label='Move up'
+              >
+                <img src='/assets/up-long-solid-full.svg' alt='Up' className='h-4 w-4' />
+              </button>
+              <button
+                onClick={() => moveTaskDown(index)}
+                className='rounded-full p-2 text-slate-600 transition hover:bg-slate-200'
+                aria-label='Move down'
+              >
+                <img src='/assets/down-long-solid-full.svg' alt='Down' className='h-4 w-4' />
+              </button>
+              <button
+                onClick={() => deleteTask(index)}
+                className='rounded-full p-2 text-slate-600 transition hover:bg-slate-200'
+                aria-label='Delete'
+              >
+                <img src='/assets/trash-solid-full.svg' alt='Delete' className='h-5 w-5' />
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
-export default ToDo
+
+export default ToDo;
