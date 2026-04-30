@@ -97,7 +97,7 @@ function Chats() {
                     </section>
 
                     <div className="mt-8 grid gap-6 xl:grid-cols-[320px_1.7fr_320px]">
-                        <aside className="rounded-[2rem] border border-slate-200 bg-white p-5 shadow-lg shadow-slate-200/40">
+                        <aside className="flex h-full flex-col rounded-[2rem] border border-slate-200 bg-white p-5 shadow-lg shadow-slate-200/40">
                             <div className="mb-6 flex items-center justify-between">
                                 <div>
                                     <h2 className="text-lg font-semibold text-slate-900">Chats</h2>
@@ -115,7 +115,7 @@ function Chats() {
                                     className="w-full rounded-full border border-slate-200 bg-slate-50 py-3 pl-12 pr-4 text-sm text-slate-900 outline-none shadow-sm transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100"
                                 />
                             </div>
-                            <div className="space-y-3">
+                            <div className="space-y-3 overflow-y-auto pr-1 max-h-[52vh]">
                                 {filteredChats.map((member) => (
                                     <button
                                         key={member.chatId}
